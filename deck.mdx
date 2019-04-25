@@ -68,6 +68,7 @@ module.exports = {
       options: {
         title: 'Apollo Server',
         description: 'How to use Apollo Server',
+        contentDir: 'docs/source',
         ...
       }
     }
@@ -114,10 +115,11 @@ import {Split} from 'mdx-deck/layouts'
 <HalfSize>
 
 ```jsx
+// src/pages/index.js
 import Helmet from 'react-helmet';
 import {Layout, Header, Sidebar} from 'gatsby-theme-apollo';
 
-export default function Page() {
+export default function Home() {
   return (
     <Layout>
       <Helmet>
@@ -130,6 +132,29 @@ export default function Page() {
     </Layout>
   );
 }
+```
+
+</HalfSize>
+
+---
+
+<HalfSize>
+
+```js
+// gatsby-config.js
+module.exports = {
+  __experimentalThemes: [
+    {
+      resolve: 'gatsby-theme-apollo-docs', // <--- "-docs"
+      options: {
+        title: 'Apollo Server',
+        description: 'How to use Apollo Server',
+        contentDir: 'docs/source',
+        ...
+      }
+    }
+  ]
+};
 ```
 
 </HalfSize>
