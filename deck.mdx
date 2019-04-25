@@ -1,0 +1,175 @@
+import {book, syntaxHighlighterPrism} from 'mdx-deck/themes'
+
+export const themes = [book, syntaxHighlighterPrism]
+
+# Using themes in production
+
+Trevor Blades, web developer at Apollo
+
+---
+
+## Where we were
+
+- Framework was understood by few
+- Unable/difficult to make use of new tech
+- Layout and design needed work
+
+---
+
+## What we wanted
+
+- Approachable to other developers
+- Ability to stay current
+- Shared layout and design
+
+---
+
+## Gatsby could work
+
+- Approachable: React, Markdown
+- Stay current: MDX, Gatsby plugin ecosystem
+- Shared layout: ???
+
+---
+
+## Only one "problem"...
+
+- Our documentation is spread out across 11 GitHub repos
+- Each set of tools has its own repo (client, server, link, etc.)
+- Docs live next to the code 👍
+- Manage one big website, or *somehow* deploy 11 sites separately?
+
+---
+
+# Enter Gatsby themes
+
+Build one Gatsby site and deploy it 11 times
+
+---
+
+## Off to the races
+
+- Start laying foundations, adding fonts, colors, base styles
+- Build a Gatsby site using dummy data (lots of Markdown files)
+- `npm publish`
+
+---
+
+import HalfSize from './layouts/half-size'
+
+<HalfSize>
+
+```js
+// gatsby-config.js
+module.exports = {
+  __experimentalThemes: [
+    {
+      resolve: 'gatsby-theme-apollo',
+      options: {
+        title: 'Apollo Server',
+        description: 'How to use Apollo Server',
+        ...
+      }
+    }
+  ]
+};
+```
+
+</HalfSize>
+
+---
+
+## Principled GraphQL
+
+- New website, not a lot of time to build it
+- Similar layout to new docs, with a few changes
+- Great chance to test our Gatsby theme concept
+
+---
+
+import {Split} from 'mdx-deck/layouts'
+
+<Split>
+
+###### `gatsby-theme-apollo`
+
+- Boilerplate, colors, styles
+- Common components (header, sidebar, etc.)
+- Build-it-yourself "sandbox"
+
+</Split>
+
+<Split>
+
+###### `gatsby-theme-apollo-docs`
+
+- Contains logic specific to docs generation
+- Configuration-based
+- Inherits from base theme
+
+</Split>
+
+---
+
+<HalfSize>
+
+```jsx
+import Helmet from 'react-helmet';
+import {Layout, Header, Sidebar} from 'gatsby-theme-apollo';
+
+export default function Page() {
+  return (
+    <Layout>
+      <Helmet>
+        <title>Principled GraphQL</title>
+      </Helmet>
+      <Header />
+      <Sidebar>
+        ...
+      </Sidebar>
+    </Layout>
+  );
+}
+```
+
+</HalfSize>
+
+---
+
+## Back to work on docs
+
+- Docs theme benefits from work done on base theme
+- Excited because the concept worked!
+- Lots to do: versioning, table of contents, search
+
+---
+
+## Initial launch
+
+- Parity with what we had before
+- Relies on lots of custom code in gatsby-node.js
+- Stay up-to-date with Renovate, Greenkeeper, etc.
+
+---
+
+## What we got
+
+- Approachable to other developers ✅
+- Ability to stay current ✅
+- Shared layout and design ✅
+
+---
+
+## What's next
+
+- MDX support
+- Custom components: better code blocks, expandable panels, tabs
+- Awesome, interactive docs
+
+---
+
+## Links
+
+- https://github.com/apollographql/gatsby-theme-apollo
+- https://github.com/apollographql/principled-graphql
+- https://apollographql.com/docs
